@@ -14,10 +14,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class GameMode implements Serializable {
 
-	/** ゲームモードID */
-	String gameModeId;
 	/** ランキングテーブルID */
 	String rankingTableId;
+	/** ゲームモードID */
+	String gameModeId;
 	/** ゲームモード */
 	String gameMode;
 	/** オーナーID */
@@ -32,6 +32,24 @@ public class GameMode implements Serializable {
 	Long createAt;
 	/** 更新日時 */
 	Long updateAt;
+
+	/**
+	 * ランキングテーブルIDを取得
+	 * 
+	 * @return ランキングテーブルID
+	 */
+	public String getRankingTableId() {
+		return rankingTableId;
+	}
+	
+	/**
+	 * ランキングテーブルIDを設定
+	 * 
+	 * @param rankingTableId ランキングテーブルID
+	 */
+	public void setRankingTableId(String rankingTableId) {
+		this.rankingTableId = rankingTableId;
+	}
 	
 	/**
 	 * ゲームモードIDを取得
@@ -52,144 +70,126 @@ public class GameMode implements Serializable {
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * ゲームモードを取得
 	 * 
-	 * @return ゲームモードID
-	 */
-	public String getRankingTableId() {
-		return rankingTableId;
-	}
-	
-	/**
-	 * ゲームモードIDを設定
-	 * 
-	 * @param gameModeId ゲームモードID
-	 */
-	public void setRankingTableId(String rankingTableId) {
-		this.rankingTableId = rankingTableId;
-	}
-	
-	/**
-	 * ゲームモードIDを取得
-	 * 
-	 * @return ゲームモードID
+	 * @return ゲームモード
 	 */
 	public String getGameMode() {
 		return gameMode;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * ゲームモードを設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param gameMode ゲームモード
 	 */
 	public void setGameMode(String gameMode) {
 		this.gameMode = gameMode;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * オーナーIDを取得
 	 * 
-	 * @return ゲームモードID
+	 * @return オーナーID
 	 */
 	public String getOwnerId() {
 		return ownerId;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * オーナーIDを設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param ownerId オーナーID
 	 */
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * ソート方向を取得
 	 * 
-	 * @return ゲームモードID
+	 * @return ソート方向
 	 */
 	public Boolean getAsc() {
 		return asc;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * ソート方向を設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param asc ソート方向
 	 */
 	public void setAsc(Boolean asc) {
 		this.asc = asc;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * 集計間隔(分)を取得
 	 * 
-	 * @return ゲームモードID
+	 * @return 集計間隔(分)
 	 */
 	public Integer getCalcInterval() {
 		return calcInterval;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * 集計間隔(分)を設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param calcInterval 集計間隔(分)
 	 */
 	public void setCalcInterval(Integer calcInterval) {
 		this.calcInterval = calcInterval;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * 最終集計時間を取得
 	 * 
-	 * @return ゲームモードID
+	 * @return 最終集計時間
 	 */
 	public Long getLastCalcAt() {
 		return lastCalcAt;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * 最終集計時間を設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param lastCalcAt 最終集計時間
 	 */
 	public void setLastCalcAt(Long lastCalcAt) {
 		this.lastCalcAt = lastCalcAt;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * 作成日時を取得
 	 * 
-	 * @return ゲームモードID
+	 * @return 作成日時
 	 */
 	public Long getCreateAt() {
 		return createAt;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * 作成日時を設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param createAt 作成日時
 	 */
 	public void setCreateAt(Long createAt) {
 		this.createAt = createAt;
 	}
 	
 	/**
-	 * ゲームモードIDを取得
+	 * 最終更新日時を取得
 	 * 
-	 * @return ゲームモードID
+	 * @return 最終更新日時
 	 */
 	public Long getUpdateAt() {
 		return updateAt;
 	}
 	
 	/**
-	 * ゲームモードIDを設定
+	 * 最終更新日時を設定
 	 * 
-	 * @param gameModeId ゲームモードID
+	 * @param updateAt 最終更新日時
 	 */
 	public void setUpdateAt(Long updateAt) {
 		this.updateAt = updateAt;
