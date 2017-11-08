@@ -1,50 +1,73 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.ranking.control;
 
+import org.json.JSONObject;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import io.gs2.ranking.model.Ranking;
+import io.gs2.ranking.model.*;
 
 /**
- * ランキング取得結果。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class GetRankingResult {
 
-	/** ランキング */
-	List<Ranking> items;
-	
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
+
+	/** スコア */
+	private List<RankingScore> items;
+
+
 	/**
-	 * 取得したゲームモード数を取得。
-	 * 
-	 * @return 取得したゲームモード数
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
 	 */
-	public Integer getCount() {
-		return items == null ? null : items.size();
+	public String getNextPageToken() {
+		return nextPageToken;
 	}
-	
-	@Deprecated
-	public void setCount(Integer count){ }
-	
+
 	/**
-	 * 取得したランキングを取得。
-	 * 
-	 * @return ランキング
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
 	 */
-	public List<Ranking> getItems() {
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
+	}
+
+	/**
+	 * スコアを取得
+	 *
+	 * @return スコア
+	 */
+	public List<RankingScore> getItems() {
 		return items;
 	}
-	
+
 	/**
-	 * ランキングを設定。
-	 * 
-	 * @param items ランキング
+	 * スコアを設定
+	 *
+	 * @param items スコア
 	 */
-	public void setItems(List<Ranking> items) {
+	public void setItems(List<RankingScore> items) {
 		this.items = items;
 	}
+
 }

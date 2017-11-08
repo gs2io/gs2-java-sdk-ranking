@@ -28,7 +28,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @SuppressWarnings("serial")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Score implements Serializable {
+public class RankingScore implements Serializable {
+
+	/** 先頭からの位置 */
+	private Long index;
 
 	/** スコア値 */
 	private Integer score;
@@ -36,18 +39,33 @@ public class Score implements Serializable {
 	/** メタデータ */
 	private String meta;
 
-	/** ランキングテーブルGRN */
-	private String rankingTableId;
-
 	/** 登録日時(エポック秒) */
 	private Integer updateAt;
-
-	/** ゲームモード名 */
-	private String gameMode;
 
 	/** ユーザID */
 	private String userId;
 
+	/** 同点同順位を採用した場合の順位 */
+	private Long rank;
+
+
+	/**
+	 * 先頭からの位置を取得
+	 *
+	 * @return 先頭からの位置
+	 */
+	public Long getIndex() {
+		return index;
+	}
+
+	/**
+	 * 先頭からの位置を設定
+	 *
+	 * @param index 先頭からの位置
+	 */
+	public void setIndex(Long index) {
+		this.index = index;
+	}
 
 	/**
 	 * スコア値を取得
@@ -86,24 +104,6 @@ public class Score implements Serializable {
 	}
 
 	/**
-	 * ランキングテーブルGRNを取得
-	 *
-	 * @return ランキングテーブルGRN
-	 */
-	public String getRankingTableId() {
-		return rankingTableId;
-	}
-
-	/**
-	 * ランキングテーブルGRNを設定
-	 *
-	 * @param rankingTableId ランキングテーブルGRN
-	 */
-	public void setRankingTableId(String rankingTableId) {
-		this.rankingTableId = rankingTableId;
-	}
-
-	/**
 	 * 登録日時(エポック秒)を取得
 	 *
 	 * @return 登録日時(エポック秒)
@@ -122,24 +122,6 @@ public class Score implements Serializable {
 	}
 
 	/**
-	 * ゲームモード名を取得
-	 *
-	 * @return ゲームモード名
-	 */
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	/**
-	 * ゲームモード名を設定
-	 *
-	 * @param gameMode ゲームモード名
-	 */
-	public void setGameMode(String gameMode) {
-		this.gameMode = gameMode;
-	}
-
-	/**
 	 * ユーザIDを取得
 	 *
 	 * @return ユーザID
@@ -155,6 +137,24 @@ public class Score implements Serializable {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	/**
+	 * 同点同順位を採用した場合の順位を取得
+	 *
+	 * @return 同点同順位を採用した場合の順位
+	 */
+	public Long getRank() {
+		return rank;
+	}
+
+	/**
+	 * 同点同順位を採用した場合の順位を設定
+	 *
+	 * @param rank 同点同順位を採用した場合の順位
+	 */
+	public void setRank(Long rank) {
+		this.rank = rank;
 	}
 
 }

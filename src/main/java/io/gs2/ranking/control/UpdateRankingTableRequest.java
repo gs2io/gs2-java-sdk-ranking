@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.ranking.control;
 
-import io.gs2.control.Gs2BasicRequest;
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.ranking.Gs2Ranking;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
- * ランキングテーブルの更新リクエスト。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @SuppressWarnings("serial")
 public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTableRequest> {
@@ -16,61 +31,63 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 		public static final String FUNCTION = "UpdateRankingTable";
 	}
 
-	/** ランキングテーブル名 */
-	String rankingTableName;
+	/** ランキングテーブルの名前を指定します。 */
+	private String rankingTableName;
+
 	/** 説明文 */
-	String description;
+	private String description;
+
 
 	/**
-	 * ランキングテーブル名を取得。
-	 * 
-	 * @return ランキングテーブル名
+	 * ランキングテーブルの名前を指定します。を取得
+	 *
+	 * @return ランキングテーブルの名前を指定します。
 	 */
 	public String getRankingTableName() {
 		return rankingTableName;
 	}
-	
+
 	/**
-	 * ランキングテーブル名を設定。
-	 * 
-	 * @param rankingTableName ランキングテーブル名
+	 * ランキングテーブルの名前を指定します。を設定
+	 *
+	 * @param rankingTableName ランキングテーブルの名前を指定します。
 	 */
 	public void setRankingTableName(String rankingTableName) {
 		this.rankingTableName = rankingTableName;
 	}
-	
+
 	/**
-	 * ランキングテーブル名を設定。
-	 * 
-	 * @param rankingTableName ランキングテーブル名
+	 * ランキングテーブルの名前を指定します。を設定
+	 *
+	 * @param rankingTableName ランキングテーブルの名前を指定します。
 	 * @return this
 	 */
 	public UpdateRankingTableRequest withRankingTableName(String rankingTableName) {
 		setRankingTableName(rankingTableName);
 		return this;
 	}
-	
+
 	/**
-	 * 説明文を取得。
-	 * 
+	 * 説明文を取得
+	 *
 	 * @return 説明文
 	 */
 	public String getDescription() {
 		return description;
 	}
-	
+
 	/**
-	 * 説明文を設定。
-	 * 
+	 * 説明文を設定
+	 *
 	 * @param description 説明文
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	/**
-	 * 説明文を設定。
-	 * 
+	 * 説明文を設定
+	 *
 	 * @param description 説明文
 	 * @return this
 	 */
@@ -78,4 +95,5 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 		setDescription(description);
 		return this;
 	}
+
 }

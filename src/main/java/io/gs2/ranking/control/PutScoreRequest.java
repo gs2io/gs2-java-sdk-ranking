@@ -1,13 +1,28 @@
+/*
+ * Copyright 2016 Game Server Services, Inc. or its affiliates. All Rights
+ * Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ * A copy of the License is located at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is distributed
+ * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ * express or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 package io.gs2.ranking.control;
 
-import io.gs2.control.Gs2UserRequest;
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.ranking.Gs2Ranking;
+import io.gs2.control.Gs2UserRequest;
 
 /**
- * スコアの登録リクエスト。
- * 
  * @author Game Server Services, Inc.
- *
  */
 @SuppressWarnings("serial")
 public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
@@ -16,37 +31,41 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 		public static final String FUNCTION = "PutScore";
 	}
 
-	/** ゲームモード名 */
-	String rankingTableName;
-	/** ゲームモード */
-	String gameMode;
-	/** スコア */
-	Integer score;
-	/** メタデータ */
-	String meta;
-	
+	/** ランキングテーブルの名前を指定します。 */
+	private String rankingTableName;
+
+	/** ゲームモードの名前を指定します。 */
+	private String gameMode;
+
+	/** スコア値 */
+	private Integer score;
+
+	/** スコアに付随するメタ情報 */
+	private String meta;
+
+
 	/**
-	 * ゲームモード名を取得。
-	 * 
-	 * @return ゲームモード名
+	 * ランキングテーブルの名前を指定します。を取得
+	 *
+	 * @return ランキングテーブルの名前を指定します。
 	 */
 	public String getRankingTableName() {
 		return rankingTableName;
 	}
-	
+
 	/**
-	 * ゲームモード名を設定。
-	 * 
-	 * @param rankingTableName ゲームモード名
+	 * ランキングテーブルの名前を指定します。を設定
+	 *
+	 * @param rankingTableName ランキングテーブルの名前を指定します。
 	 */
 	public void setRankingTableName(String rankingTableName) {
 		this.rankingTableName = rankingTableName;
 	}
-	
+
 	/**
-	 * ゲームモード名を設定。
-	 * 
-	 * @param rankingTableName ゲームモード名
+	 * ランキングテーブルの名前を指定します。を設定
+	 *
+	 * @param rankingTableName ランキングテーブルの名前を指定します。
 	 * @return this
 	 */
 	public PutScoreRequest withRankingTableName(String rankingTableName) {
@@ -55,27 +74,27 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	}
 
 	/**
-	 * ゲームモードを取得。
-	 * 
-	 * @return ゲームモード
+	 * ゲームモードの名前を指定します。を取得
+	 *
+	 * @return ゲームモードの名前を指定します。
 	 */
 	public String getGameMode() {
 		return gameMode;
 	}
-	
+
 	/**
-	 * ゲームモードを設定。
-	 * 
-	 * @param gameMode ゲームモード
+	 * ゲームモードの名前を指定します。を設定
+	 *
+	 * @param gameMode ゲームモードの名前を指定します。
 	 */
 	public void setGameMode(String gameMode) {
 		this.gameMode = gameMode;
 	}
 
 	/**
-	 * ゲームモードを設定。
-	 * 
-	 * @param gameMode ゲームモード
+	 * ゲームモードの名前を指定します。を設定
+	 *
+	 * @param gameMode ゲームモードの名前を指定します。
 	 * @return this
 	 */
 	public PutScoreRequest withGameMode(String gameMode) {
@@ -84,27 +103,27 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	}
 
 	/**
-	 * スコアを取得。
-	 * 
-	 * @return スコア
+	 * スコア値を取得
+	 *
+	 * @return スコア値
 	 */
 	public Integer getScore() {
 		return score;
 	}
-	
+
 	/**
-	 * スコアを設定。
-	 * 
-	 * @param score スコア
+	 * スコア値を設定
+	 *
+	 * @param score スコア値
 	 */
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-	
+
 	/**
-	 * スコアを設定。
-	 * 
-	 * @param score スコア
+	 * スコア値を設定
+	 *
+	 * @param score スコア値
 	 * @return this
 	 */
 	public PutScoreRequest withScore(Integer score) {
@@ -113,31 +132,32 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	}
 
 	/**
-	 * メタデータを取得。
-	 * 
-	 * @return メタデータ
+	 * スコアに付随するメタ情報を取得
+	 *
+	 * @return スコアに付随するメタ情報
 	 */
 	public String getMeta() {
 		return meta;
 	}
-	
+
 	/**
-	 * メタデータを設定。
-	 * 
-	 * @param meta メタデータ
+	 * スコアに付随するメタ情報を設定
+	 *
+	 * @param meta スコアに付随するメタ情報
 	 */
 	public void setMeta(String meta) {
 		this.meta = meta;
 	}
-	
+
 	/**
-	 * メタデータを設定。
-	 * 
-	 * @param meta メタデータ
+	 * スコアに付随するメタ情報を設定
+	 *
+	 * @param meta スコアに付随するメタ情報
 	 * @return this
 	 */
 	public PutScoreRequest withMeta(String meta) {
 		setMeta(meta);
 		return this;
 	}
+
 }
