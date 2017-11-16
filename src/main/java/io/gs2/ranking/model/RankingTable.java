@@ -30,11 +30,21 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class RankingTable implements Serializable {
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** スコア登録完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+ */
+	private String putScoreDoneTriggerScript;
 
 	/** 説明文 */
 	private String description;
+
+	/** 集計処理完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+ */
+	private String calculateRankingDoneTriggerScript;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
 	/** ランキングテーブルGRN */
 	private String rankingTableId;
@@ -45,26 +55,39 @@ public class RankingTable implements Serializable {
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
 
+	/** スコア登録時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+ */
+	private String putScoreTriggerScript;
+
 	/** ランキングテーブル名 */
 	private String name;
 
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * スコア登録完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return スコア登録完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getPutScoreDoneTriggerScript() {
+		return putScoreDoneTriggerScript;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * スコア登録完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
 	}
 
 	/**
@@ -83,6 +106,50 @@ public class RankingTable implements Serializable {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 	/**
@@ -137,6 +204,32 @@ public class RankingTable implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を取得
+	 *
+	 * @return スコア登録時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
+	 */
+	public String getPutScoreTriggerScript() {
+		return putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+を設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+GameMode に設定がある場合はそちらが優先されます
+
+	 */
+	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
+		this.putScoreTriggerScript = putScoreTriggerScript;
 	}
 
 	/**

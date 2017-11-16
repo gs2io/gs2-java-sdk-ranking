@@ -37,11 +37,20 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	/** スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true */
 	private Boolean asc;
 
+	/** スコア登録完了時 に実行されるGS2-Script */
+	private String putScoreDoneTriggerScript;
+
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
+
 	/** ゲームモード名 */
 	private String gameMode;
 
 	/** このゲームモードのランキング集計間隔を分単位で指定します */
 	private Integer calcInterval;
+
+	/** スコア登録時 に実行されるGS2-Script */
+	private String putScoreTriggerScript;
 
 
 	/**
@@ -103,6 +112,64 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	}
 
 	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録完了時 に実行されるGS2-Script
+	 */
+	public String getPutScoreDoneTriggerScript() {
+		return putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 */
+	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateGameModeRequest withPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		setPutScoreDoneTriggerScript(putScoreDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateGameModeRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
+		return this;
+	}
+
+	/**
 	 * ゲームモード名を取得
 	 *
 	 * @return ゲームモード名
@@ -157,6 +224,35 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	 */
 	public CreateGameModeRequest withCalcInterval(Integer calcInterval) {
 		setCalcInterval(calcInterval);
+		return this;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録時 に実行されるGS2-Script
+	 */
+	public String getPutScoreTriggerScript() {
+		return putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 */
+	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
+		this.putScoreTriggerScript = putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateGameModeRequest withPutScoreTriggerScript(String putScoreTriggerScript) {
+		setPutScoreTriggerScript(putScoreTriggerScript);
 		return this;
 	}
 

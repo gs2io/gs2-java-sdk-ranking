@@ -30,8 +30,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class GameMode implements Serializable {
 
+	/** スコア登録完了時 に実行されるGS2-Script */
+	private String putScoreDoneTriggerScript;
+
 	/** 集計処理中か否か */
 	private Boolean calculating;
+
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
 
 	/** 集計間隔(分) */
 	private Integer calcInterval;
@@ -60,6 +66,27 @@ public class GameMode implements Serializable {
 	/** 更新日時(エポック秒) */
 	private Integer updateAt;
 
+	/** スコア登録時 に実行されるGS2-Script */
+	private String putScoreTriggerScript;
+
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録完了時 に実行されるGS2-Script
+	 */
+	public String getPutScoreDoneTriggerScript() {
+		return putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 */
+	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
+	}
 
 	/**
 	 * 集計処理中か否かを取得
@@ -77,6 +104,24 @@ public class GameMode implements Serializable {
 	 */
 	public void setCalculating(Boolean calculating) {
 		this.calculating = calculating;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
 	}
 
 	/**
@@ -239,6 +284,24 @@ public class GameMode implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録時 に実行されるGS2-Script
+	 */
+	public String getPutScoreTriggerScript() {
+		return putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 */
+	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
+		this.putScoreTriggerScript = putScoreTriggerScript;
 	}
 
 }

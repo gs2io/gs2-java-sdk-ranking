@@ -61,7 +61,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateGameModeResult createGameMode(CreateGameModeRequest request) {
@@ -71,6 +73,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				.put("gameMode", request.getGameMode())
 				.put("calcInterval", request.getCalcInterval());
 
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode",
 				credential,
@@ -90,15 +95,20 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateRankingTableResult createRankingTable(CreateRankingTableRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("name", request.getName())
-				.put("description", request.getDescription());
+				.put("description", request.getDescription())
+				.put("name", request.getName());
 
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/ranking",
 				credential,
@@ -118,6 +128,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteGameMode(DeleteGameModeRequest request) {
@@ -144,6 +155,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteRankingTable(DeleteRankingTableRequest request) {
@@ -170,7 +182,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeGameModeResult describeGameMode(DescribeGameModeRequest request) {
@@ -204,7 +218,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeRankingTableResult describeRankingTable(DescribeRankingTableRequest request) {
@@ -237,7 +253,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetEstimateRankResult getEstimateRank(GetEstimateRankRequest request) {
@@ -269,7 +287,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetGameModeResult getGameMode(GetGameModeRequest request) {
@@ -296,7 +316,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetMyRankResult getMyRank(GetMyRankRequest request) {
@@ -324,7 +346,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetRankingResult getRanking(GetRankingRequest request) {
@@ -357,7 +381,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetRankingTableResult getRankingTable(GetRankingTableRequest request) {
@@ -384,7 +410,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public PutScoreResult putScore(PutScoreRequest request) {
@@ -413,7 +441,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateGameModeResult updateGameMode(UpdateGameModeRequest request) {
@@ -421,6 +451,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("calcInterval", request.getCalcInterval());
 
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "",
 				credential,
@@ -440,13 +473,18 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateRankingTableResult updateRankingTable(UpdateRankingTableRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
 
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
         if(request.getDescription() != null) body.put("description", request.getDescription());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "",
