@@ -69,20 +69,23 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	public CreateGameModeResult createGameMode(CreateGameModeRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("asc", request.getAsc())
 				.put("gameMode", request.getGameMode())
+				.put("asc", request.getAsc())
 				.put("calcInterval", request.getCalcInterval());
 
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
         if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
         if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode",
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode",
 				credential,
 				ENDPOINT,
 				CreateGameModeRequest.Constant.MODULE,
 				CreateGameModeRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateGameModeResult.class);
@@ -103,12 +106,12 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	public CreateRankingTableResult createRankingTable(CreateRankingTableRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("description", request.getDescription())
-				.put("name", request.getName());
+				.put("name", request.getName())
+				.put("description", request.getDescription());
 
-        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
         if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/ranking",
 				credential,
@@ -116,6 +119,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				CreateRankingTableRequest.Constant.MODULE,
 				CreateRankingTableRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(post, CreateRankingTableResult.class);
@@ -133,7 +139,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public void deleteGameMode(DeleteGameModeRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "";
 
 
 
@@ -143,6 +149,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				DeleteGameModeRequest.Constant.MODULE,
 				DeleteGameModeRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -160,7 +169,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public void deleteRankingTable(DeleteRankingTableRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
 
 
 
@@ -170,6 +179,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				DeleteRankingTableRequest.Constant.MODULE,
 				DeleteRankingTableRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		doRequest(delete, null);
@@ -189,7 +201,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public DescribeGameModeResult describeGameMode(DescribeGameModeRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
@@ -205,6 +217,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				DescribeGameModeRequest.Constant.MODULE,
 				DescribeGameModeRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -241,6 +256,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				DescribeRankingTableRequest.Constant.MODULE,
 				DescribeRankingTableRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, DescribeRankingTableResult.class);
@@ -260,7 +278,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public GetEstimateRankResult getEstimateRank(GetEstimateRankRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "/ranking/estimate";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "/ranking/estimate";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getScore() != null) queryString.add(new BasicNameValuePair("score", String.valueOf(request.getScore())));
@@ -275,6 +293,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				GetEstimateRankRequest.Constant.MODULE,
 				GetEstimateRankRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetEstimateRankResult.class);
@@ -294,7 +315,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public GetGameModeResult getGameMode(GetGameModeRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "";
 
 
 
@@ -304,6 +325,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				GetGameModeRequest.Constant.MODULE,
 				GetGameModeRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetGameModeResult.class);
@@ -323,7 +347,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public GetMyRankResult getMyRank(GetMyRankRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "/ranking/rank";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "/ranking/rank";
 
 
 
@@ -333,6 +357,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				GetMyRankRequest.Constant.MODULE,
 				GetMyRankRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -353,7 +380,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public GetRankingResult getRanking(GetRankingRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "/ranking";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "/ranking";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getOffset() != null) queryString.add(new BasicNameValuePair("offset", String.valueOf(request.getOffset())));
@@ -369,6 +396,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				GetRankingRequest.Constant.MODULE,
 				GetRankingRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetRankingResult.class);
@@ -388,7 +418,7 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 	public GetRankingTableResult getRankingTable(GetRankingTableRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
 
 
 
@@ -398,6 +428,9 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				GetRankingTableRequest.Constant.MODULE,
 				GetRankingTableRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(get, GetRankingTableResult.class);
@@ -422,12 +455,15 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				.put("meta", request.getMeta());
 
 		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "/ranking",
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "/ranking",
 				credential,
 				ENDPOINT,
 				PutScoreRequest.Constant.MODULE,
 				PutScoreRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
         post.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
@@ -452,15 +488,18 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				.put("calcInterval", request.getCalcInterval());
 
         if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
-        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
         if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null ? "null" : request.getGameMode()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "",
 				credential,
 				ENDPOINT,
 				UpdateGameModeRequest.Constant.MODULE,
 				UpdateGameModeRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(put, UpdateGameModeResult.class);
@@ -482,17 +521,20 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode();
 
+        if(request.getDescription() != null) body.put("description", request.getDescription());
         if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
         if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
         if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-        if(request.getDescription() != null) body.put("description", request.getDescription());
 		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null ? "null" : request.getRankingTableName()) + "",
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "",
 				credential,
 				ENDPOINT,
 				UpdateRankingTableRequest.Constant.MODULE,
 				UpdateRankingTableRequest.Constant.FUNCTION,
 				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
 
 
 		return doRequest(put, UpdateRankingTableResult.class);
