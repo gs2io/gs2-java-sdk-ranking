@@ -34,7 +34,10 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 	/** ランキングテーブルの名前を指定します。 */
 	private String rankingTableName;
 
-	/** スコア登録時 に実行されるGS2-Script */
+	/** 説明文 */
+	private String description;
+
+	/** スコア登録時 */
 	private String putScoreTriggerScript;
 
 	/** スコア登録完了時 に実行されるGS2-Script */
@@ -42,9 +45,6 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 
 	/** 集計処理完了時 に実行されるGS2-Script */
 	private String calculateRankingDoneTriggerScript;
-
-	/** 説明文 */
-	private String description;
 
 
 	/**
@@ -77,27 +77,56 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 	}
 
 	/**
-	 * スコア登録時 に実行されるGS2-Scriptを取得
+	 * 説明文を取得
 	 *
-	 * @return スコア登録時 に実行されるGS2-Script
+	 * @return 説明文
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * 説明文を設定
+	 *
+	 * @param description 説明文
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * 説明文を設定
+	 *
+	 * @param description 説明文
+	 * @return this
+	 */
+	public UpdateRankingTableRequest withDescription(String description) {
+		setDescription(description);
+		return this;
+	}
+
+	/**
+	 * スコア登録時を取得
+	 *
+	 * @return スコア登録時
 	 */
 	public String getPutScoreTriggerScript() {
 		return putScoreTriggerScript;
 	}
 
 	/**
-	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 * スコア登録時を設定
 	 *
-	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 * @param putScoreTriggerScript スコア登録時
 	 */
 	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
 		this.putScoreTriggerScript = putScoreTriggerScript;
 	}
 
 	/**
-	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 * スコア登録時を設定
 	 *
-	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 * @param putScoreTriggerScript スコア登録時
 	 * @return this
 	 */
 	public UpdateRankingTableRequest withPutScoreTriggerScript(String putScoreTriggerScript) {
@@ -160,35 +189,6 @@ public class UpdateRankingTableRequest extends Gs2BasicRequest<UpdateRankingTabl
 	 */
 	public UpdateRankingTableRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
 		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
-		return this;
-	}
-
-	/**
-	 * 説明文を取得
-	 *
-	 * @return 説明文
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * 説明文を設定
-	 *
-	 * @param description 説明文
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	/**
-	 * 説明文を設定
-	 *
-	 * @param description 説明文
-	 * @return this
-	 */
-	public UpdateRankingTableRequest withDescription(String description) {
-		setDescription(description);
 		return this;
 	}
 

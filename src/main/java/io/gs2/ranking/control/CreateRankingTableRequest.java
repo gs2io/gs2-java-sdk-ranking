@@ -31,48 +31,48 @@ public class CreateRankingTableRequest extends Gs2BasicRequest<CreateRankingTabl
 		public static final String FUNCTION = "CreateRankingTable";
 	}
 
-	/** 集計処理完了時 に実行されるGS2-Script */
-	private String calculateRankingDoneTriggerScript;
+	/** ランキングテーブルの名前 */
+	private String name;
 
 	/** 説明文 */
 	private String description;
 
-	/** スコア登録完了時 に実行されるGS2-Script */
-	private String putScoreDoneTriggerScript;
-
-	/** ランキングテーブルの名前 */
-	private String name;
-
 	/** スコア登録時 に実行されるGS2-Script */
 	private String putScoreTriggerScript;
 
+	/** スコア登録完了時 に実行されるGS2-Script */
+	private String putScoreDoneTriggerScript;
+
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
+
 
 	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 * ランキングテーブルの名前を取得
 	 *
-	 * @return 集計処理完了時 に実行されるGS2-Script
+	 * @return ランキングテーブルの名前
 	 */
-	public String getCalculateRankingDoneTriggerScript() {
-		return calculateRankingDoneTriggerScript;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 * ランキングテーブルの名前を設定
 	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 * @param name ランキングテーブルの名前
 	 */
-	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 * ランキングテーブルの名前を設定
 	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 * @param name ランキングテーブルの名前
 	 * @return this
 	 */
-	public CreateRankingTableRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
+	public CreateRankingTableRequest withName(String name) {
+		setName(name);
 		return this;
 	}
 
@@ -106,6 +106,35 @@ public class CreateRankingTableRequest extends Gs2BasicRequest<CreateRankingTabl
 	}
 
 	/**
+	 * スコア登録時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録時 に実行されるGS2-Script
+	 */
+	public String getPutScoreTriggerScript() {
+		return putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 */
+	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
+		this.putScoreTriggerScript = putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateRankingTableRequest withPutScoreTriggerScript(String putScoreTriggerScript) {
+		setPutScoreTriggerScript(putScoreTriggerScript);
+		return this;
+	}
+
+	/**
 	 * スコア登録完了時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return スコア登録完了時 に実行されるGS2-Script
@@ -135,60 +164,31 @@ public class CreateRankingTableRequest extends Gs2BasicRequest<CreateRankingTabl
 	}
 
 	/**
-	 * ランキングテーブルの名前を取得
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return ランキングテーブルの名前
+	 * @return 集計処理完了時 に実行されるGS2-Script
 	 */
-	public String getName() {
-		return name;
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
 	}
 
 	/**
-	 * ランキングテーブルの名前を設定
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name ランキングテーブルの名前
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
 	}
 
 	/**
-	 * ランキングテーブルの名前を設定
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name ランキングテーブルの名前
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public CreateRankingTableRequest withName(String name) {
-		setName(name);
-		return this;
-	}
-
-	/**
-	 * スコア登録時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return スコア登録時 に実行されるGS2-Script
-	 */
-	public String getPutScoreTriggerScript() {
-		return putScoreTriggerScript;
-	}
-
-	/**
-	 * スコア登録時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
-	 */
-	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
-		this.putScoreTriggerScript = putScoreTriggerScript;
-	}
-
-	/**
-	 * スコア登録時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param putScoreTriggerScript スコア登録時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public CreateRankingTableRequest withPutScoreTriggerScript(String putScoreTriggerScript) {
-		setPutScoreTriggerScript(putScoreTriggerScript);
+	public CreateRankingTableRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
 		return this;
 	}
 

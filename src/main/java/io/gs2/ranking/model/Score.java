@@ -30,17 +30,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Score implements Serializable {
 
-	/** スコア値 */
-	private Integer score;
-
-	/** メタデータ */
-	private String meta;
-
 	/** ランキングテーブルGRN */
 	private String rankingTableId;
-
-	/** 登録日時(エポック秒) */
-	private Integer updateAt;
 
 	/** ゲームモード名 */
 	private String gameMode;
@@ -48,42 +39,15 @@ public class Score implements Serializable {
 	/** ユーザID */
 	private String userId;
 
+	/** スコア値 */
+	private Long score;
 
-	/**
-	 * スコア値を取得
-	 *
-	 * @return スコア値
-	 */
-	public Integer getScore() {
-		return score;
-	}
+	/** メタデータ */
+	private String meta;
 
-	/**
-	 * スコア値を設定
-	 *
-	 * @param score スコア値
-	 */
-	public void setScore(Integer score) {
-		this.score = score;
-	}
+	/** 登録日時(エポック秒) */
+	private Integer updateAt;
 
-	/**
-	 * メタデータを取得
-	 *
-	 * @return メタデータ
-	 */
-	public String getMeta() {
-		return meta;
-	}
-
-	/**
-	 * メタデータを設定
-	 *
-	 * @param meta メタデータ
-	 */
-	public void setMeta(String meta) {
-		this.meta = meta;
-	}
 
 	/**
 	 * ランキングテーブルGRNを取得
@@ -101,24 +65,6 @@ public class Score implements Serializable {
 	 */
 	public void setRankingTableId(String rankingTableId) {
 		this.rankingTableId = rankingTableId;
-	}
-
-	/**
-	 * 登録日時(エポック秒)を取得
-	 *
-	 * @return 登録日時(エポック秒)
-	 */
-	public Integer getUpdateAt() {
-		return updateAt;
-	}
-
-	/**
-	 * 登録日時(エポック秒)を設定
-	 *
-	 * @param updateAt 登録日時(エポック秒)
-	 */
-	public void setUpdateAt(Integer updateAt) {
-		this.updateAt = updateAt;
 	}
 
 	/**
@@ -155,6 +101,60 @@ public class Score implements Serializable {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	/**
+	 * スコア値を取得
+	 *
+	 * @return スコア値
+	 */
+	public Long getScore() {
+		return score;
+	}
+
+	/**
+	 * スコア値を設定
+	 *
+	 * @param score スコア値
+	 */
+	public void setScore(Long score) {
+		this.score = score;
+	}
+
+	/**
+	 * メタデータを取得
+	 *
+	 * @return メタデータ
+	 */
+	public String getMeta() {
+		return meta;
+	}
+
+	/**
+	 * メタデータを設定
+	 *
+	 * @param meta メタデータ
+	 */
+	public void setMeta(String meta) {
+		this.meta = meta;
+	}
+
+	/**
+	 * 登録日時(エポック秒)を取得
+	 *
+	 * @return 登録日時(エポック秒)
+	 */
+	public Integer getUpdateAt() {
+		return updateAt;
+	}
+
+	/**
+	 * 登録日時(エポック秒)を設定
+	 *
+	 * @param updateAt 登録日時(エポック秒)
+	 */
+	public void setUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
 	}
 
 }

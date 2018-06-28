@@ -33,20 +33,20 @@ public class RankingScore implements Serializable {
 	/** 先頭からの位置 */
 	private Long index;
 
+	/** 同点同順位を採用した場合の順位 */
+	private Long rank;
+
+	/** ユーザID */
+	private String userId;
+
 	/** スコア値 */
-	private Integer score;
+	private Long score;
 
 	/** メタデータ */
 	private String meta;
 
 	/** 登録日時(エポック秒) */
 	private Integer updateAt;
-
-	/** ユーザID */
-	private String userId;
-
-	/** 同点同順位を採用した場合の順位 */
-	private Long rank;
 
 
 	/**
@@ -68,11 +68,47 @@ public class RankingScore implements Serializable {
 	}
 
 	/**
+	 * 同点同順位を採用した場合の順位を取得
+	 *
+	 * @return 同点同順位を採用した場合の順位
+	 */
+	public Long getRank() {
+		return rank;
+	}
+
+	/**
+	 * 同点同順位を採用した場合の順位を設定
+	 *
+	 * @param rank 同点同順位を採用した場合の順位
+	 */
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
+
+	/**
+	 * ユーザIDを取得
+	 *
+	 * @return ユーザID
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * ユーザIDを設定
+	 *
+	 * @param userId ユーザID
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
 	 * スコア値を取得
 	 *
 	 * @return スコア値
 	 */
-	public Integer getScore() {
+	public Long getScore() {
 		return score;
 	}
 
@@ -81,7 +117,7 @@ public class RankingScore implements Serializable {
 	 *
 	 * @param score スコア値
 	 */
-	public void setScore(Integer score) {
+	public void setScore(Long score) {
 		this.score = score;
 	}
 
@@ -119,42 +155,6 @@ public class RankingScore implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
-	}
-
-	/**
-	 * ユーザIDを取得
-	 *
-	 * @return ユーザID
-	 */
-	public String getUserId() {
-		return userId;
-	}
-
-	/**
-	 * ユーザIDを設定
-	 *
-	 * @param userId ユーザID
-	 */
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	/**
-	 * 同点同順位を採用した場合の順位を取得
-	 *
-	 * @return 同点同順位を採用した場合の順位
-	 */
-	public Long getRank() {
-		return rank;
-	}
-
-	/**
-	 * 同点同順位を採用した場合の順位を設定
-	 *
-	 * @param rank 同点同順位を採用した場合の順位
-	 */
-	public void setRank(Long rank) {
-		this.rank = rank;
 	}
 
 }

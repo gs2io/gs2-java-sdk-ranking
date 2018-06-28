@@ -43,11 +43,11 @@ public class UpdateGameModeRequest extends Gs2BasicRequest<UpdateGameModeRequest
 	/** スコア登録時 に実行されるGS2-Script */
 	private String putScoreTriggerScript;
 
-	/** 集計処理完了時 に実行されるGS2-Script */
-	private String calculateRankingDoneTriggerScript;
-
 	/** スコア登録完了時 に実行されるGS2-Script */
 	private String putScoreDoneTriggerScript;
+
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
 
 
 	/**
@@ -167,35 +167,6 @@ public class UpdateGameModeRequest extends Gs2BasicRequest<UpdateGameModeRequest
 	}
 
 	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return 集計処理完了時 に実行されるGS2-Script
-	 */
-	public String getCalculateRankingDoneTriggerScript() {
-		return calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
-	 */
-	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public UpdateGameModeRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
-		return this;
-	}
-
-	/**
 	 * スコア登録完了時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return スコア登録完了時 に実行されるGS2-Script
@@ -221,6 +192,35 @@ public class UpdateGameModeRequest extends Gs2BasicRequest<UpdateGameModeRequest
 	 */
 	public UpdateGameModeRequest withPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
 		setPutScoreDoneTriggerScript(putScoreDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateGameModeRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
 		return this;
 	}
 

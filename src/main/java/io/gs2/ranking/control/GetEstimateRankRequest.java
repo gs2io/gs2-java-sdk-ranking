@@ -38,7 +38,7 @@ public class GetEstimateRankRequest extends Gs2BasicRequest<GetEstimateRankReque
 	private String gameMode;
 
 	/** スコア値 */
-	private Integer score;
+	private Long score;
 
 
 	/**
@@ -104,7 +104,7 @@ public class GetEstimateRankRequest extends Gs2BasicRequest<GetEstimateRankReque
 	 *
 	 * @return スコア値
 	 */
-	public Integer getScore() {
+	public Long getScore() {
 		return score;
 	}
 
@@ -113,7 +113,7 @@ public class GetEstimateRankRequest extends Gs2BasicRequest<GetEstimateRankReque
 	 *
 	 * @param score スコア値
 	 */
-	public void setScore(Integer score) {
+	public void setScore(Long score) {
 		this.score = score;
 	}
 
@@ -123,7 +123,7 @@ public class GetEstimateRankRequest extends Gs2BasicRequest<GetEstimateRankReque
 	 * @param score スコア値
 	 * @return this
 	 */
-	public GetEstimateRankRequest withScore(Integer score) {
+	public GetEstimateRankRequest withScore(Long score) {
 		setScore(score);
 		return this;
 	}

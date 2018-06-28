@@ -38,7 +38,7 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	private String gameMode;
 
 	/** スコア値 */
-	private Integer score;
+	private Long score;
 
 	/** スコアに付随するメタ情報 */
 	private String meta;
@@ -107,7 +107,7 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	 *
 	 * @return スコア値
 	 */
-	public Integer getScore() {
+	public Long getScore() {
 		return score;
 	}
 
@@ -116,7 +116,7 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	 *
 	 * @param score スコア値
 	 */
-	public void setScore(Integer score) {
+	public void setScore(Long score) {
 		this.score = score;
 	}
 
@@ -126,7 +126,7 @@ public class PutScoreRequest extends Gs2UserRequest<PutScoreRequest> {
 	 * @param score スコア値
 	 * @return this
 	 */
-	public PutScoreRequest withScore(Integer score) {
+	public PutScoreRequest withScore(Long score) {
 		setScore(score);
 		return this;
 	}

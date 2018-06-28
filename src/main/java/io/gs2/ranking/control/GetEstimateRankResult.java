@@ -27,30 +27,12 @@ import io.gs2.ranking.model.*;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class GetEstimateRankResult {
 
-	/** 推定最大順位 */
-	private Long max;
-
 	/** 推定最小順位 */
 	private Long min;
 
+	/** 推定最大順位 */
+	private Long max;
 
-	/**
-	 * 推定最大順位を取得
-	 *
-	 * @return 推定最大順位
-	 */
-	public Long getMax() {
-		return max;
-	}
-
-	/**
-	 * 推定最大順位を設定
-	 *
-	 * @param max 推定最大順位
-	 */
-	public void setMax(Long max) {
-		this.max = max;
-	}
 
 	/**
 	 * 推定最小順位を取得
@@ -68,6 +50,24 @@ public class GetEstimateRankResult {
 	 */
 	public void setMin(Long min) {
 		this.min = min;
+	}
+
+	/**
+	 * 推定最大順位を取得
+	 *
+	 * @return 推定最大順位
+	 */
+	public Long getMax() {
+		return max;
+	}
+
+	/**
+	 * 推定最大順位を設定
+	 *
+	 * @param max 推定最大順位
+	 */
+	public void setMax(Long max) {
+		this.max = max;
 	}
 
 }

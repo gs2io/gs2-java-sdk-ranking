@@ -34,23 +34,23 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	/** ランキングテーブルの名前を指定します。 */
 	private String rankingTableName;
 
-	/** スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true */
-	private Boolean asc;
-
-	/** スコア登録完了時 に実行されるGS2-Script */
-	private String putScoreDoneTriggerScript;
-
-	/** 集計処理完了時 に実行されるGS2-Script */
-	private String calculateRankingDoneTriggerScript;
-
 	/** ゲームモード名 */
 	private String gameMode;
+
+	/** スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true */
+	private Boolean asc;
 
 	/** このゲームモードのランキング集計間隔を分単位で指定します */
 	private Integer calcInterval;
 
 	/** スコア登録時 に実行されるGS2-Script */
 	private String putScoreTriggerScript;
+
+	/** スコア登録完了時 に実行されるGS2-Script */
+	private String putScoreDoneTriggerScript;
+
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
 
 
 	/**
@@ -83,93 +83,6 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	}
 
 	/**
-	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを取得
-	 *
-	 * @return スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
-	 */
-	public Boolean getAsc() {
-		return asc;
-	}
-
-	/**
-	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを設定
-	 *
-	 * @param asc スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
-	 */
-	public void setAsc(Boolean asc) {
-		this.asc = asc;
-	}
-
-	/**
-	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを設定
-	 *
-	 * @param asc スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
-	 * @return this
-	 */
-	public CreateGameModeRequest withAsc(Boolean asc) {
-		setAsc(asc);
-		return this;
-	}
-
-	/**
-	 * スコア登録完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return スコア登録完了時 に実行されるGS2-Script
-	 */
-	public String getPutScoreDoneTriggerScript() {
-		return putScoreDoneTriggerScript;
-	}
-
-	/**
-	 * スコア登録完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
-	 */
-	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
-		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
-	}
-
-	/**
-	 * スコア登録完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public CreateGameModeRequest withPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
-		setPutScoreDoneTriggerScript(putScoreDoneTriggerScript);
-		return this;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return 集計処理完了時 に実行されるGS2-Script
-	 */
-	public String getCalculateRankingDoneTriggerScript() {
-		return calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
-	 */
-	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public CreateGameModeRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
-		return this;
-	}
-
-	/**
 	 * ゲームモード名を取得
 	 *
 	 * @return ゲームモード名
@@ -195,6 +108,35 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	 */
 	public CreateGameModeRequest withGameMode(String gameMode) {
 		setGameMode(gameMode);
+		return this;
+	}
+
+	/**
+	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを取得
+	 *
+	 * @return スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
+	 */
+	public Boolean getAsc() {
+		return asc;
+	}
+
+	/**
+	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを設定
+	 *
+	 * @param asc スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
+	 */
+	public void setAsc(Boolean asc) {
+		this.asc = asc;
+	}
+
+	/**
+	 * スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は trueを設定
+	 *
+	 * @param asc スコアを順位付けするときに小さいスコアのほうがハイスコアな場合は true
+	 * @return this
+	 */
+	public CreateGameModeRequest withAsc(Boolean asc) {
+		setAsc(asc);
 		return this;
 	}
 
@@ -253,6 +195,64 @@ public class CreateGameModeRequest extends Gs2BasicRequest<CreateGameModeRequest
 	 */
 	public CreateGameModeRequest withPutScoreTriggerScript(String putScoreTriggerScript) {
 		setPutScoreTriggerScript(putScoreTriggerScript);
+		return this;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録完了時 に実行されるGS2-Script
+	 */
+	public String getPutScoreDoneTriggerScript() {
+		return putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 */
+	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateGameModeRequest withPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		setPutScoreDoneTriggerScript(putScoreDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateGameModeRequest withCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		setCalculateRankingDoneTriggerScript(calculateRankingDoneTriggerScript);
 		return this;
 	}
 

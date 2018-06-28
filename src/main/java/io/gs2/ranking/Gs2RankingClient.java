@@ -18,7 +18,9 @@ package io.gs2.ranking;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import io.gs2.model.Region;
 import io.gs2.util.EncodingUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpDelete;
@@ -55,6 +57,26 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 		super(credential);
 	}
 
+	/**
+	 * コンストラクタ。
+	 *
+	 * @param credential 認証情報
+	 * @param region リージョン
+	 */
+	public Gs2RankingClient(IGs2Credential credential, Region region) {
+		super(credential, region);
+	}
+
+	/**
+	 * コンストラクタ。
+	 *
+	 * @param credential 認証情報
+	 * @param region リージョン
+	 */
+	public Gs2RankingClient(IGs2Credential credential, String region) {
+		super(credential, region);
+	}
+
 
 	/**
 	 * ゲームモードを作成します<br>
@@ -72,10 +94,10 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				.put("gameMode", request.getGameMode())
 				.put("asc", request.getAsc())
 				.put("calcInterval", request.getCalcInterval());
-
         if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
         if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
         if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode",
 				credential,
@@ -89,42 +111,6 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 
 		return doRequest(post, CreateGameModeResult.class);
-
-	}
-
-
-	/**
-	 * ランキングテーブルを新規作成します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public CreateRankingTableResult createRankingTable(CreateRankingTableRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("name", request.getName())
-				.put("description", request.getDescription());
-
-        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
-        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
-        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/ranking",
-				credential,
-				ENDPOINT,
-				CreateRankingTableRequest.Constant.MODULE,
-				CreateRankingTableRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(post, CreateRankingTableResult.class);
 
 	}
 
@@ -149,36 +135,6 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 				ENDPOINT,
 				DeleteGameModeRequest.Constant.MODULE,
 				DeleteGameModeRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(delete, null);
-
-	}
-
-
-	/**
-	 * ランキングテーブルを削除します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 */
-
-	public void deleteRankingTable(DeleteRankingTableRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
-
-
-
-		HttpDelete delete = createHttpDelete(
-				url,
-				credential,
-				ENDPOINT,
-				DeleteRankingTableRequest.Constant.MODULE,
-				DeleteRankingTableRequest.Constant.FUNCTION);
         if(request.getRequestId() != null) {
             delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
         }
@@ -229,6 +185,138 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 
 	/**
+	 * ゲームモードを取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetGameModeResult getGameMode(GetGameModeRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetGameModeRequest.Constant.MODULE,
+				GetGameModeRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, GetGameModeResult.class);
+
+	}
+
+
+	/**
+	 * ゲームモードの設定を更新します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public UpdateGameModeResult updateGameMode(UpdateGameModeRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("calcInterval", request.getCalcInterval());
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "",
+				credential,
+				ENDPOINT,
+				UpdateGameModeRequest.Constant.MODULE,
+				UpdateGameModeRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(put, UpdateGameModeResult.class);
+
+	}
+
+
+	/**
+	 * ランキングテーブルを新規作成します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public CreateRankingTableResult createRankingTable(CreateRankingTableRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("name", request.getName());
+        if(request.getDescription() != null) body.put("description", request.getDescription());
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/ranking",
+				credential,
+				ENDPOINT,
+				CreateRankingTableRequest.Constant.MODULE,
+				CreateRankingTableRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(post, CreateRankingTableResult.class);
+
+	}
+
+
+	/**
+	 * ランキングテーブルを削除します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void deleteRankingTable(DeleteRankingTableRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
+
+
+
+		HttpDelete delete = createHttpDelete(
+				url,
+				credential,
+				ENDPOINT,
+				DeleteRankingTableRequest.Constant.MODULE,
+				DeleteRankingTableRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(delete, null);
+
+	}
+
+
+	/**
 	 * ランキングテーブルの一覧を取得します<br>
 	 * <br>
 	 *
@@ -267,6 +355,72 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 
 	/**
+	 * ランキングテーブルを取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetRankingTableResult getRankingTable(GetRankingTableRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetRankingTableRequest.Constant.MODULE,
+				GetRankingTableRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, GetRankingTableResult.class);
+
+	}
+
+
+	/**
+	 * ランキングテーブルを更新します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public UpdateRankingTableResult updateRankingTable(UpdateRankingTableRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode();
+        if(request.getDescription() != null) body.put("description", request.getDescription());
+        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
+        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
+        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "",
+				credential,
+				ENDPOINT,
+				UpdateRankingTableRequest.Constant.MODULE,
+				UpdateRankingTableRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(put, UpdateRankingTableResult.class);
+
+	}
+
+
+	/**
 	 * 指定したスコアを取った時のおおよその順位を取得します<br>
 	 * <br>
 	 *
@@ -299,38 +453,6 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 
 		return doRequest(get, GetEstimateRankResult.class);
-
-	}
-
-
-	/**
-	 * ゲームモードを取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetGameModeResult getGameMode(GetGameModeRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetGameModeRequest.Constant.MODULE,
-				GetGameModeRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetGameModeResult.class);
 
 	}
 
@@ -407,38 +529,6 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 
 
 	/**
-	 * ランキングテーブルを取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetRankingTableResult getRankingTable(GetRankingTableRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetRankingTableRequest.Constant.MODULE,
-				GetRankingTableRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetRankingTableResult.class);
-
-	}
-
-
-	/**
 	 * スコアを登録します<br>
 	 * <br>
 	 *
@@ -451,8 +541,8 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
 	public PutScoreResult putScore(PutScoreRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("score", request.getScore())
-				.put("meta", request.getMeta());
+				.put("score", request.getScore());
+        if(request.getMeta() != null) body.put("meta", request.getMeta());
 
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "/ranking",
@@ -468,76 +558,6 @@ public class Gs2RankingClient extends AbstractGs2Client<Gs2RankingClient> {
         post.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
 		return doRequest(post, PutScoreResult.class);
-
-	}
-
-
-	/**
-	 * ゲームモードの設定を更新します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public UpdateGameModeResult updateGameMode(UpdateGameModeRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("calcInterval", request.getCalcInterval());
-
-        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
-        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
-        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "/mode/" + (request.getGameMode() == null || request.getGameMode().equals("") ? "null" : request.getGameMode()) + "",
-				credential,
-				ENDPOINT,
-				UpdateGameModeRequest.Constant.MODULE,
-				UpdateGameModeRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(put, UpdateGameModeResult.class);
-
-	}
-
-
-	/**
-	 * ランキングテーブルを更新します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public UpdateRankingTableResult updateRankingTable(UpdateRankingTableRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode();
-
-        if(request.getDescription() != null) body.put("description", request.getDescription());
-        if(request.getPutScoreTriggerScript() != null) body.put("putScoreTriggerScript", request.getPutScoreTriggerScript());
-        if(request.getPutScoreDoneTriggerScript() != null) body.put("putScoreDoneTriggerScript", request.getPutScoreDoneTriggerScript());
-        if(request.getCalculateRankingDoneTriggerScript() != null) body.put("calculateRankingDoneTriggerScript", request.getCalculateRankingDoneTriggerScript());
-		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/ranking/" + (request.getRankingTableName() == null || request.getRankingTableName().equals("") ? "null" : request.getRankingTableName()) + "",
-				credential,
-				ENDPOINT,
-				UpdateRankingTableRequest.Constant.MODULE,
-				UpdateRankingTableRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(put, UpdateRankingTableResult.class);
 
 	}
 

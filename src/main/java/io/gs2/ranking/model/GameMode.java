@@ -30,32 +30,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class GameMode implements Serializable {
 
-	/** スコア登録完了時 に実行されるGS2-Script */
-	private String putScoreDoneTriggerScript;
-
-	/** 集計処理中か否か */
-	private Boolean calculating;
-
-	/** 集計処理完了時 に実行されるGS2-Script */
-	private String calculateRankingDoneTriggerScript;
-
-	/** 集計間隔(分) */
-	private Integer calcInterval;
-
-	/** 最終集計日時(エポック秒) */
-	private Integer lastCalcAt;
-
-	/** ゲームモード名 */
-	private String gameMode;
-
 	/** ゲームモードGRN */
 	private String gameModeId;
-
-	/** ランキング計算に昇順を適用するか */
-	private Boolean asc;
-
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
 
 	/** ランキングテーブル */
 	private String rankingTableId;
@@ -63,120 +39,36 @@ public class GameMode implements Serializable {
 	/** オーナーID */
 	private String ownerId;
 
-	/** 更新日時(エポック秒) */
-	private Integer updateAt;
+	/** ゲームモード名 */
+	private String gameMode;
+
+	/** ランキング計算に昇順を適用するか */
+	private Boolean asc;
+
+	/** 集計間隔(分) */
+	private Integer calcInterval;
+
+	/** 集計処理中か否か */
+	private Boolean calculating;
 
 	/** スコア登録時 に実行されるGS2-Script */
 	private String putScoreTriggerScript;
 
+	/** スコア登録完了時 に実行されるGS2-Script */
+	private String putScoreDoneTriggerScript;
 
-	/**
-	 * スコア登録完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return スコア登録完了時 に実行されるGS2-Script
-	 */
-	public String getPutScoreDoneTriggerScript() {
-		return putScoreDoneTriggerScript;
-	}
+	/** 集計処理完了時 に実行されるGS2-Script */
+	private String calculateRankingDoneTriggerScript;
 
-	/**
-	 * スコア登録完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
-	 */
-	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
-		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
-	}
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
-	/**
-	 * 集計処理中か否かを取得
-	 *
-	 * @return 集計処理中か否か
-	 */
-	public Boolean getCalculating() {
-		return calculating;
-	}
+	/** 更新日時(エポック秒) */
+	private Integer updateAt;
 
-	/**
-	 * 集計処理中か否かを設定
-	 *
-	 * @param calculating 集計処理中か否か
-	 */
-	public void setCalculating(Boolean calculating) {
-		this.calculating = calculating;
-	}
+	/** 最終集計日時(エポック秒) */
+	private Integer lastCalcAt;
 
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return 集計処理完了時 に実行されるGS2-Script
-	 */
-	public String getCalculateRankingDoneTriggerScript() {
-		return calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計処理完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
-	 */
-	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
-		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
-	}
-
-	/**
-	 * 集計間隔(分)を取得
-	 *
-	 * @return 集計間隔(分)
-	 */
-	public Integer getCalcInterval() {
-		return calcInterval;
-	}
-
-	/**
-	 * 集計間隔(分)を設定
-	 *
-	 * @param calcInterval 集計間隔(分)
-	 */
-	public void setCalcInterval(Integer calcInterval) {
-		this.calcInterval = calcInterval;
-	}
-
-	/**
-	 * 最終集計日時(エポック秒)を取得
-	 *
-	 * @return 最終集計日時(エポック秒)
-	 */
-	public Integer getLastCalcAt() {
-		return lastCalcAt;
-	}
-
-	/**
-	 * 最終集計日時(エポック秒)を設定
-	 *
-	 * @param lastCalcAt 最終集計日時(エポック秒)
-	 */
-	public void setLastCalcAt(Integer lastCalcAt) {
-		this.lastCalcAt = lastCalcAt;
-	}
-
-	/**
-	 * ゲームモード名を取得
-	 *
-	 * @return ゲームモード名
-	 */
-	public String getGameMode() {
-		return gameMode;
-	}
-
-	/**
-	 * ゲームモード名を設定
-	 *
-	 * @param gameMode ゲームモード名
-	 */
-	public void setGameMode(String gameMode) {
-		this.gameMode = gameMode;
-	}
 
 	/**
 	 * ゲームモードGRNを取得
@@ -194,42 +86,6 @@ public class GameMode implements Serializable {
 	 */
 	public void setGameModeId(String gameModeId) {
 		this.gameModeId = gameModeId;
-	}
-
-	/**
-	 * ランキング計算に昇順を適用するかを取得
-	 *
-	 * @return ランキング計算に昇順を適用するか
-	 */
-	public Boolean getAsc() {
-		return asc;
-	}
-
-	/**
-	 * ランキング計算に昇順を適用するかを設定
-	 *
-	 * @param asc ランキング計算に昇順を適用するか
-	 */
-	public void setAsc(Boolean asc) {
-		this.asc = asc;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を取得
-	 *
-	 * @return 作成日時(エポック秒)
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を設定
-	 *
-	 * @param createAt 作成日時(エポック秒)
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
 	}
 
 	/**
@@ -269,21 +125,75 @@ public class GameMode implements Serializable {
 	}
 
 	/**
-	 * 更新日時(エポック秒)を取得
+	 * ゲームモード名を取得
 	 *
-	 * @return 更新日時(エポック秒)
+	 * @return ゲームモード名
 	 */
-	public Integer getUpdateAt() {
-		return updateAt;
+	public String getGameMode() {
+		return gameMode;
 	}
 
 	/**
-	 * 更新日時(エポック秒)を設定
+	 * ゲームモード名を設定
 	 *
-	 * @param updateAt 更新日時(エポック秒)
+	 * @param gameMode ゲームモード名
 	 */
-	public void setUpdateAt(Integer updateAt) {
-		this.updateAt = updateAt;
+	public void setGameMode(String gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	/**
+	 * ランキング計算に昇順を適用するかを取得
+	 *
+	 * @return ランキング計算に昇順を適用するか
+	 */
+	public Boolean getAsc() {
+		return asc;
+	}
+
+	/**
+	 * ランキング計算に昇順を適用するかを設定
+	 *
+	 * @param asc ランキング計算に昇順を適用するか
+	 */
+	public void setAsc(Boolean asc) {
+		this.asc = asc;
+	}
+
+	/**
+	 * 集計間隔(分)を取得
+	 *
+	 * @return 集計間隔(分)
+	 */
+	public Integer getCalcInterval() {
+		return calcInterval;
+	}
+
+	/**
+	 * 集計間隔(分)を設定
+	 *
+	 * @param calcInterval 集計間隔(分)
+	 */
+	public void setCalcInterval(Integer calcInterval) {
+		this.calcInterval = calcInterval;
+	}
+
+	/**
+	 * 集計処理中か否かを取得
+	 *
+	 * @return 集計処理中か否か
+	 */
+	public Boolean getCalculating() {
+		return calculating;
+	}
+
+	/**
+	 * 集計処理中か否かを設定
+	 *
+	 * @param calculating 集計処理中か否か
+	 */
+	public void setCalculating(Boolean calculating) {
+		this.calculating = calculating;
 	}
 
 	/**
@@ -302,6 +212,96 @@ public class GameMode implements Serializable {
 	 */
 	public void setPutScoreTriggerScript(String putScoreTriggerScript) {
 		this.putScoreTriggerScript = putScoreTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return スコア登録完了時 に実行されるGS2-Script
+	 */
+	public String getPutScoreDoneTriggerScript() {
+		return putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * スコア登録完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param putScoreDoneTriggerScript スコア登録完了時 に実行されるGS2-Script
+	 */
+	public void setPutScoreDoneTriggerScript(String putScoreDoneTriggerScript) {
+		this.putScoreDoneTriggerScript = putScoreDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return 集計処理完了時 に実行されるGS2-Script
+	 */
+	public String getCalculateRankingDoneTriggerScript() {
+		return calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 集計処理完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param calculateRankingDoneTriggerScript 集計処理完了時 に実行されるGS2-Script
+	 */
+	public void setCalculateRankingDoneTriggerScript(String calculateRankingDoneTriggerScript) {
+		this.calculateRankingDoneTriggerScript = calculateRankingDoneTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
+	 * 更新日時(エポック秒)を取得
+	 *
+	 * @return 更新日時(エポック秒)
+	 */
+	public Integer getUpdateAt() {
+		return updateAt;
+	}
+
+	/**
+	 * 更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 更新日時(エポック秒)
+	 */
+	public void setUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+	}
+
+	/**
+	 * 最終集計日時(エポック秒)を取得
+	 *
+	 * @return 最終集計日時(エポック秒)
+	 */
+	public Integer getLastCalcAt() {
+		return lastCalcAt;
+	}
+
+	/**
+	 * 最終集計日時(エポック秒)を設定
+	 *
+	 * @param lastCalcAt 最終集計日時(エポック秒)
+	 */
+	public void setLastCalcAt(Integer lastCalcAt) {
+		this.lastCalcAt = lastCalcAt;
 	}
 
 }
